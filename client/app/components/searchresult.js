@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router'
 
 export default class SearchResult extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class SearchResult extends React.Component {
     return(
       <div className="panel panel-default">
         <div className="panel-heading">
-          <h3 className="panel-title"><a href="#">{data.title}</a>
+          <h3 className="panel-title"><Link to="/contract">{data.title}</Link>
             <div className="pull-right">
               <a href="#" className="headertext">{data.author.company}</a>
             </div>

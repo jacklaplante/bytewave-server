@@ -8,16 +8,28 @@ export function getAllContracts(container, cb) {
   emulateServerReturn(contractData, cb);
 }
 
-function contractContains(contract, term){
-  return contract.title.search(term) > -1 || contract.description.search(term > -1) ||
-    contract.author.company.search(term) > -1;
+function getContractItemSync(contractItemId) {
+  var contractItem = readDocument('contractContainer', contractItemId);
+  contractItem.author = readDocument('users', contractItem.author);
+  return contractItem;
+}
+
+export function getContractData(user, cb) {
+  var userData = readDocument('users', user);
+  var contractData = userData.contracts;
+  contractData.contents = contractData.map(getContractItemSync);
+  emulateServerReturn(contractData, cb);
+}
+
+function contractContains(contract, searchTerm){
+  return contract.title.search(searchTerm) > -1 || contract.description.search(searchTerm) > -1 || contract.author.company.search(searchTerm) > -1;
 }
 
 export function getSearchContracts(searchTerm, container, cb) {
   var contractData = readDocument('contractContainer', container);
   for(var i = 0, len = contractData.length; i < len; i++){
     contractData[i].author = readDocument('users', contractData[i].author);
-    if(!contractContains(contractData[i]), searchTerm){
+    if(!contractContains(contractData[i], searchTerm)){
       contractData.splice(i, 1);
       len--;
       i--;
@@ -26,43 +38,49 @@ export function getSearchContracts(searchTerm, container, cb) {
   emulateServerReturn(contractData, cb);
 }
 
+export function getTags(cb){
+  var tags = readDocument("tags", 1);
+  emulateServerReturn(tags, cb);
+}
+
+export function getContractSync(contractId){
+  var allContracts = readDocument('contractContainer', 1);
+  var contract = allContracts[contractId - 1];
+  return contract;
+}
+
 export function getUser(id, cb){
-  var user = readDocument('users', id);
-  emulateServerReturn(user, cb);
+  var users = readDocument('users', id);
+  users.contracts = users.contracts.map(getContractSync);
+  emulateServerReturn(users, cb);
 }
 
 export function updateUser(id, newUser, cb){
-  var user = getUser(id, user);
-  user.contents = newUser;
-  writeDocument('users', user);
-  emulateServerReturn(user, cb);
+  var user = readDocument('users', id);
+  user.skills = newUser.skills;
+  user.experience = newUser.experience;
+  user.about = newUser.about;
+  user.contact = newUser.contact;
+  user.email= newUser.email;
+  var updatedUser = writeDocument('users', user);
+  emulateServerReturn(updatedUser, cb);
 }
 
-
-function getReviewsSync(reviewId) {
-  var review = readDocument('reviews', reviewId);
-  // Assuming a StatusUpdate. If we had other types of FeedItems in the DB, we would
-  // need to check the type and have logic for each type.
-  review.author = readDocument('users', review.author);
-  // Resolve comment author.
-  return review;
-}
-
-export function postReview(reviewId, author, contents, cb) {
+export function postReview(userId, author, contents, cb) {
   // Since a CommentThread is embedded in a FeedItem object,
   // we don't have to resolve it. Read the document,
   // update the embedded object, and then update the
   // document in the database.
-  var reviews = readDocument('reviews', reviewId);
-  reviews.push({
+  var user = readDocument('users', userId);
+  user.reviews.push({
     "author": author,
-    "contents": contents,
-    "postDate": new Date().getTime()
+    "stuff": contents,
+    "date": new Date().getTime()
   });
-  writeDocument('users', reviews);
+  var updatedUser = writeDocument('users', user);
   // Return a resolved version of the feed item so React can
   // render it.
-  emulateServerReturn(getReviewsSync(reviewId), cb);
+  emulateServerReturn(updatedUser, cb);
 }
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back

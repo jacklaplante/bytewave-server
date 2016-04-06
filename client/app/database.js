@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 // Modify with your startup's name!
 var startupName = "Bytewave";
@@ -9,6 +9,7 @@ var initialData = {
       // This user has id "1".
       "1": {
         "_id": 1,
+        "image": "img/private_profile.png",
         "company": "UCombinator",
         "fullName": "Chandler",
         "title": "Contractor",
@@ -25,6 +26,7 @@ var initialData = {
 
       "2": {
         "_id": 2,
+        "image": "img/private_profile.png",
         "company": "Student",
         "fullName": "Jack",
         "title": "Developer",
@@ -52,6 +54,7 @@ var initialData = {
 
       "3": {
         "_id": 3,
+        "image": "img/private_profile.png",
         "company": "Student",
         "fullName": "Michelle Wilkinson",
         "title": "Developer",
@@ -74,7 +77,7 @@ var initialData = {
         "title": "Dynamic Mockup",
         "startend": "Started",
         "budget": "$0.00",
-        "deadline": 14513451345,
+        "deadline": "05/12/2016",
         "description": "This is the description I am using to show contract item description",
         "postdate": "02/03/0344",
         "skills": ["HTML", "CSS", "JavaScript"],
@@ -92,6 +95,11 @@ var initialData = {
         "skills": ["HTML", "CSS", "JavaScript"],
         "tags": ["#html", "#css", "#javascript", "#bootstrap", "#web"]
       }
+    ]
+  },
+  "tags": {
+    "1": [
+      "java", "css", "javascript", "ionic", "angularjs", "python", "mysql", "c", "c++", "scala", "ruby"
     ]
   }
 };

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import ContractForm from './components/contractform';
 import Contract from './components/contract';
 import PrivateProfile from './components/privateProfile';
-import EditProfile from "./components/editProfile";
 import PublicProfile from './components/publicProfile';
 import Search from "./components/search";
 import {resetDatabase} from './database';

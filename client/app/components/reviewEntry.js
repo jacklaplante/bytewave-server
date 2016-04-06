@@ -4,21 +4,21 @@ import React from 'react';
    constructor(props) {
      super(props);
      this.state = {
-       stuff: ""
+       value: ""
      };
    }
 
    handleChange(e) {
-     this.setState({ value: e.target.stuff });
+     this.setState({ value: e.target.value });
    }
 
    handleKeyUp(e) {
      if (e.key === "Enter") {
-       var review = this.state.stuff.trim();
+       var review = this.state.value.trim();
        if (review !== "") {
          // Post review
-         this.props.onPost(this.state.stuff);
-         this.setState({ stuff: "" });
+         this.props.onPost(this.state.value);
+         this.setState({ value: "" });
        }
      }
    }

@@ -51,6 +51,10 @@ export default class Search extends React.Component {
     });
   }
 
+  advancedSearch(parameters){
+    parameters;
+  }
+
   render() {
     var contract, contracts;
     if(!this.state.showPreview){
@@ -66,19 +70,19 @@ export default class Search extends React.Component {
         contracts.push(<SearchResult key={result._id} data={result} previewContract={this.previewContract.bind(this)}/>);
       });
     }
+
     return (
       <div>
       <div>
         <div className="container">
           <div className="row">
             <div className="col-md-2 advanced-search min-padding">
-              <AdvancedSearch />
+              <AdvancedSearch search={this.advancedSearch.bind(this)}/>
             </div>
             <div className="col-md-6 min-padding">
               <div className="row">
                 <div className="col-md-12">
-                  <SearchBar searchTerm={null} search={this.search.bind(this)}/>
-                  <button type="button" className="btn btn-default pull-right" style={{marginTop: 5 + 'px', marginBottom: 5 + 'px'}} onClick={this.refresh.bind(this)}>Clear</button>
+                  <SearchBar searchTerm={null} search={this.search.bind(this)} clear={this.refresh.bind(this)}/>
                 </div>
               </div>
               <hr style={{marginTop: 0 + 'px', marginBottom: 5 + 'px'}}/>

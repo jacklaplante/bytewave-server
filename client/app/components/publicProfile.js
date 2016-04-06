@@ -8,7 +8,6 @@ export default class PublicProfile extends React.Component {
 
   constructor(props) {
     super(props);
-    // The FeedItem's initial state is what the Feed passed to us.
     this.state ={
       _id: -1,
       company: "",
@@ -26,9 +25,9 @@ export default class PublicProfile extends React.Component {
     };
   }
 
-  handleReviewPost(reviewText) {
-    postReview(this.state._id, 4, reviewText, (updatedFeedItem) => {
-      this.setState(updatedFeedItem);
+  handleReviewPost(reviewText){
+    postReview(2, 2, reviewText, () => {
+      this.refresh();
     });
   }
 
@@ -43,7 +42,6 @@ export default class PublicProfile extends React.Component {
   }
 
   render() {
-    var data = this.state;
     return (
           <div className="container">
             <div className="row">
@@ -98,8 +96,8 @@ export default class PublicProfile extends React.Component {
                     <div className="panel-title headertext"><h3>Reviews</h3></div>
                   </div>
                   <ReviewWidget onPost={(reviewText) => this.handleReviewPost(reviewText)}>
-                    {data.reviews.map((review, i) => {
-                      // i is comment's index in comments array
+                    {this.state.reviews.map((review, i) => {
+                      // i is review's index in reviews array
                       return (
                         <Review key={i} author={review.author} date={review.date}>{review.stuff}</Review>
                       );
@@ -112,12 +110,12 @@ export default class PublicProfile extends React.Component {
                       </div>
                       <div className="panel-body">
                         <address>
-                          {this.state.contact}<br />
+                          {this.state.address}
                         </address>
                         <hr />
                         <address>
                           <strong>Email</strong><br />
-                          <a href="mailto:">{this.state.email}</a>
+                          <a href="mailto:#">{this.state.email}</a>
                         </address>
                       </div>
                     </div>

@@ -1,40 +1,54 @@
 import React from 'react';
+import {getUser, getContractData} from '../server'
 
 export default class Contract extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: "",
-      description: "",
-      budget: "",
-      deadline: "",
-      skills: "",
-      tags: ""
-    };
+    this.state = props.data;
+  }
+
+  refresh() {
+    getUser(this.props.user, (data) => {
+      this.setState(data);
+    });
+      getContractData(this.props.user, data => {
+      this.setState({
+        activeContracts : data
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.refresh();
   }
 
   render(){
+    var data = this.props.data
     return(
   <div>
     <link href="css/contractor.css" rel="stylesheet" />
       <div className="container maintext">
         <div className="row">
           <div className="col-md-8">
-            <h1>{this.props.title}</h1>
-            <h3>Company: {this.props.company}</h3>
-            <h5>Budget: <span className="text-muted">{this.props.budget}</span> Deadline: <span className="text-muted">{this.props.deadline}</span></h5>
+            <h1>{data.title}</h1>
+            <h3>Company: {data.company}</h3>
+            <h5>Budget: <span className="text-muted">{data.budget}</span> Deadline: <span className="text-muted">{data.deadline}</span></h5>
             <h4>Project Description</h4>
-            <p>{this.props.description}</p>
+            <p>{data.description}</p>
             <h4>Skills Required</h4>
-            <ul>
-              {this.props.skills}
-            </ul>
+              <ul>
+                {data.skills.map((skill, i) => {
+                  return (
+                    <li key={i}>{skill}</li>
+                  );
+                })}
+              </ul>
             <div className="panel panel-primary panelfill">
               <div className="panel-heading">
                 <h5 className="panel-title tags">Tags</h5>
               </div>
               <div className="panel-body tags">
-                <h6 className="tags"> {this.props.tags}</h6>
+                <h6 className="tags"> {data.tags}</h6>
               </div>
             </div>
           </div>
@@ -44,16 +58,14 @@ export default class Contract extends React.Component {
                 <h3 className="panel-title headertext">About Us</h3>
               </div>
               <div className="panel-body">
-                <p>UCombinator is a fairly new product developed by two genuine programmers that helps the in-className experience when it comes to group projects. Not only does this company form groups that contain all skills needed to be successful in group work, they also have come out with a grading system that takes commits pushed to github as a groups submission.</p>
+                <p>{data.author.about}</p>
                 <address>
-                  <strong>UCombinator</strong><br />
-                  123 University Dr.<br />
-                  Amherst, MA 01003<br />
-                  <abbr title="Phone">P:</abbr> (123) 456-7890
+                  <strong>{data.author.company}</strong><br />
+                  {data.author.contact}
                 </address>
                 <address>
-                  <strong>Full Name</strong><br />
-                  <a href="mailto:#">first.last@umass.edu</a>
+                  <strong>{data.author.company}</strong><br />
+                  <a href="mailto:#">{data.author.email}</a>
                 </address>
               </div>
             </div>

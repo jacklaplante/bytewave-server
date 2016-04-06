@@ -1,14 +1,91 @@
 import React from 'react';
+import {getTags} from '../server';
 
 export default class AdvancedSearch extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      contents: []
+      hoveredIndex: -1,
+      clickIndex: -1,
+      mouseClicked: false,
+      tags: []
+    }
+  }
+
+  refresh(){
+    getTags((results) => {
+      this.setState({
+        hoveredIndex: this.state.hoveredIndex,
+        clickIndex: this.state.clickIndex,
+        mouseClicked: this.state.mouseClicked,
+        tags: results
+      });
+    });
+  }
+
+  componentDidMount(){
+    this.refresh();
+  }
+
+  click(index){
+    this.setState({
+      hoveredIndex: this.state.hoveredIndex,
+      clickIndex: index,
+      mouseClicked: true,
+      tags: this.state.tags
+    });
+  }
+
+  hover(index){
+    this.setState({
+      hoveredIndex: index,
+      clickIndex: this.state.clickIndex,
+      mouseClicked: this.state.mouseClicked,
+      tags: this.state.tags
+    });
+  }
+
+  leave(){
+    if(!this.state.mouseClicked){
+      this.setState({
+        hoveredIndex: -1,
+        clickIndex: this.state.clickIndex,
+        mouseClicked: false,
+        tags: this.state.tags
+
+      });
     }
   }
 
   render() {
+    var ratings = [];
+    for(var i = 0; i < 5; i++){
+      let className = 'glyphicon';
+      if(this.state.clickIndex > -1){
+        if(i <= this.state.clickIndex){
+          className += ' glyphicon-star';
+        }else{
+          className += ' glyphicon-star-empty';
+        }
+      }else{
+        if (i <= this.state.hoveredIndex){
+          className += ' glyphicon-star';
+        }else{
+          className += ' glyphicon-star-empty';
+        }
+      }
+      ratings.push(
+        <button key={i} id={'star' + (i + 1)} type="button" className="btn btn-default" onMouseEnter={this.hover.bind(this, i)} onMouseLeave={this.leave.bind(this)} onClick={this.click.bind(this)}><span className={className}></span></button>
+      );
+    }
+
+    var tags = [];
+    for(i = 0; i < this.state.tags.length; i++){
+      tags.push(
+        <button key={i} className="btn btn-default tag-button" type="button">#{this.state.tags[i]}</button>
+      );
+    }
+
     return (
       <div className="panel panel-default panelfill">
         <div className="panel-heading">
@@ -16,32 +93,27 @@ export default class AdvancedSearch extends React.Component{
         </div>
 
         <div className="panel-body">
-          <div className="dropdown text-center">
-            Sort by:
-            <button className="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Most Recent
-              <span className="caret"></span>
-            </button>
-            <ul className="dropdown-menu sort-by" aria-labelledby="menu">
-              <li><a href="#">Popular</a></li>
-              <li><a href="#"><font size="1">$</font><font size="2">$</font>$</a></li>
-              <li><a href="#">$<font size="2">$</font><font size="1">$</font></a></li>
-            </ul>
-          </div>
+          <fieldset className="form-group text-center" style={{marginLeft: 5 + 'px', marginRight: 5 + 'px'}}>
+            <label htmlFor="sortBy">Sort by</label>
+            <select className="form-control" id="sortBy">
+              <option>Most Recent</option>
+              <option>Popular</option>
+              <option>Budget Ascending</option>
+              <option>Budget Descending</option>
+            </select>
+          </fieldset>
         </div>
         <div className="panel-body">
           <div className="text-center search-rating">
-            <p>Minimum Rating</p>
-            <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-star-empty"></span></button>
-            <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-star-empty"></span></button>
-            <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-star-empty"></span></button>
-            <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-star-empty"></span></button>
-            <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-star-empty"></span></button>
-          </div>
+            <p><strong>Minimum Rating</strong></p>
+            <div className="btn-group">
+              {ratings}
+            </div>
+        </div>
         </div>
         <div className="panel-body">
           <div className="text-center">
-            <p>Budget</p>
+            <p><strong>Budget</strong></p>
             <div className="input-group">
               <p className="input-group-addon">Min: </p>
               <input type="text" className="form-control" />
@@ -53,21 +125,11 @@ export default class AdvancedSearch extends React.Component{
           </div>
         </div>
         <div className="panel-body">
-          <p className="text-center">Tags</p>
-          <button className="btn btn-default tag-button" type="button">#java</button>
-          <button className="btn btn-default tag-button" type="button">#css</button>
-          <button className="btn btn-default tag-button" type="button">#javascript</button>
-          <button className="btn btn-default tag-button" type="button">#ionic</button>
-          <button className="btn btn-default tag-button" type="button">#angularjs</button>
-          <button className="btn btn-default tag-button" type="button">#python</button>
-          <button className="btn btn-default tag-button" type="button">#mysql</button>
-          <button className="btn btn-default tag-button" type="button">#c</button>
-          <button className="btn btn-default tag-button" type="button">#c++</button>
-          <button className="btn btn-default tag-button" type="button">#scala</button>
-          <button className="btn btn-default tag-button" type="button">#ruby</button>
+          <p className="text-center"><strong>Tags</strong></p>
+          {tags}
         </div>
         <div className="panel-footer text-center">
-          <button className="btn btn-default" type="button">Search</button>
+          <button className="btn btn-default" type="button" onClick={this.props.search}>Search</button>
         </div>
       </div>
     )
