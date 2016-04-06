@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Modify with your startup's name!
 var startupName = "Bytewave";
 
@@ -96,8 +94,13 @@ var initialData = {
   }
 };
 
-var data = JSON.parse(localStorage.getItem(startupName));
-if (data === null) {
+var data;
+var udpated = false;
+var fs = require('fs'), path = require('path');
+
+try {
+  data = require('.database.json');
+}catch(e) {
   data = JSONClone(initialData);
 }
 
@@ -114,7 +117,7 @@ function JSONClone(obj) {
  * Doesn't do any tricky document joins, as we will cover that in the latter
  * half of the course. :)
  */
-export function readDocument(collection, id) {
+function readDocument(collection, id) {
   // Clone the data. We do this to model a database, where you receive a
   // *copy* of an object and not the object itself.
   var collectionObj = data[collection];
@@ -125,20 +128,23 @@ export function readDocument(collection, id) {
   if (obj === undefined) {
     throw new Error(`Object ${id} does not exist in object collection ${collection} in the database!`);
   }
-
   return JSONClone(data[collection][id]);
 }
+module.exports.readDocument = readDocument;
 
 /**
  * Emulates writing a "document" to a NoSQL database.
  */
-export function writeDocument(collection, changedDocument) {
+function writeDocument(collection, changedDocument) {
   var id = changedDocument._id;
+  if (id === undefined){
+    throw new Error('You cannot write a document to the database without an _id! Use AddDocument if this is a new object.')
+  }
   // Store a copy of the object into the database. Models a database's behavior.
   data[collection][id] = JSONClone(changedDocument);
-  // Update our 'database'.
-  localStorage.setItem(startupName, JSON.stringify(data));
+  updated = true;
 }
+module.exports.writeDocument = writeDocument;
 
 /**
  * Adds a new document to the NoSQL database.
@@ -146,6 +152,9 @@ export function writeDocument(collection, changedDocument) {
 export function addDocument(collectionName, newDoc) {
   var collection = data[collectionName];
   var nextId = Object.keys(collection).length;
+  if (newDoc.hasOwnProperty('_id')){
+    throw new Error('You cannot add a document that alread has an _id. addDocument is for new documents that do not have an ID yet.');
+  }
   while (collection[nextId]) {
     nextId++;
   }
@@ -153,11 +162,41 @@ export function addDocument(collectionName, newDoc) {
   writeDocument(collectionName, newDoc);
   return newDoc;
 }
+module.exports.addDocument = addDocument;
+
+/**
+ * Deletes a document from an object collection.
+ */
+function deleteDocument(collectionName, id){
+  var collection = data[collectionName];
+  if (!collection[id]){
+    throw new Error('Collection ${collectionName} lacks an item with id ${id}');
+  }
+  delete collection[id];
+  updated = true;
+}
+module.exports.deleteDocument = deleteDocument;
+
+/**
+ *
+ */
+function getCollection(collectionName){
+  return JSONClone(data[collectionName]);
+}
+module.exports.getCollection = getCollection;
 
 /**
  * Reset our browser-local database.
  */
 export function resetDatabase() {
-  localStorage.setItem(startupName, JSON.stringify(initialData));
   data = JSONClone(initialData);
+  updated = true;
 }
+module.exports.resetDatabase = resetDatabase;
+
+// Periodically updates the database on the hard drive when changed.
+setInterval(function() {
+  if (updated) {
+    fs.writeFileSync(path.join(__dirname, 'database.json'), JSON.stringify(data) {encoding: 'utf8'});
+  }
+}, 200)
