@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bytewave</title>
+
+    <!-- Bootstrap's CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/contractor.css" rel="stylesheet">
+    <link href="css/colors.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Our Bytewave layout will go here. -->
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="edit_con.html">Create Contract</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+              <input type="text" class="form-control" placeholder="Search..."
+              onkeydown = "if (event.keyCode == 13){
+                event.preventDefault();
+                document.getElementById('search').click();
+              }">
+              <a href="search.html" class="hide" id="search"> </a>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Welcome Chandler! <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Profile</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </div>
+    <div class="container maintext">
+      <div class="row">
+        <div class="col-md-8">
+          <h1>Static UI Mockup</h1>
+          <h3>Company: UCombinator</h3>
+          <h5>Budget: <span class="text-muted">$0.00</span> Deadline: <span class="text-muted">Febraury 9, 2016</span></h5>
+          <h4>Project Description</h4>
+          <p>Using HTML, CSS, and Bootstrap, create a non-interactive mockup of your product with all screens you could possibly access from the URL. You will not have to create any Log In/Out pages at this point in the project, but a user should be logged into your service for these screen captures.</p>
+          <h4>Skills Required</h4>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+          <div class="panel panel-primary panelfill">
+            <div class="panel-heading">
+              <h5 class="panel-title tags">Tags</h5>
+            </div>
+            <div class="panel-body tags">
+              <h6 class="tags"> #html #css #javascript #bootstrap #web #cs #326</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default panelfill">
+            <div class="panel-heading">
+              <h3 class="panel-title headertext">About Us</h3>
+            </div>
+            <div class="panel-body">
+              <p>UCombinator is a fairly new product developed by two genuine programmers that helps the in-class experience when it comes to group projects. Not only does this company form groups that contain all skills needed to be successful in group work, they also have come out with a grading system that takes commits pushed to github as a groups submission.</p>
+              <address>
+                <strong>UCombinator</strong><br>
+                123 University Dr.<br>
+                Amherst, MA 01003<br>
+                <abbr title="Phone">P:</abbr> (123) 456-7890
+              </address>
+              <address>
+                <strong>Full Name</strong><br>
+                <a href="mailto:#">first.last@umass.edu</a>
+              </address>
+            </div>
+          </div>
+          <div class="panel panel-default panelfill">
+            <div class="panel-heading">
+              <h3 class="panel-title headertext">Job Postings History</h3>
+            </div>
+            <div class="panel-body">
+              <p>Thus far, This is the first job UCombinator has posted.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+/* This overrides any bootstrap h4 tag
+h4 {
+  color: red;
+}
+This overrides any h4 tag with class chandler
+h4.chandler {
+  color: purple;
+}
+This overrides any h4 tag with class shawn
+li.shawn {
+  font-weight: bold;
+}
+This overrides any h4 tag with class chandler
+ul li {
+  color: green;
+}
+ul.deb li.grace {
+    font-family: Georgia, "Bitstream Charter", serif;
+}
+*/
+.panel-body .tags {
+    padding: 5px;
+    margin: auto;
+}
+
+h5.tags {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+h6.tags {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 15px;
+}
+.panel-heading .tags {
+  margin: auto;
+}
+
+/* css for contract form */
+
+form .company-name {
+  margin: 30px 10px;
+}
+form .budget-deadline label {
+  margin-right: 5px;
+}
+#form-title {
+  width: 60%;
+  height: 50px;
+  font-size: 25px;
+}
+#form-budget, #form-deadline {
+  width: 70%;
+}

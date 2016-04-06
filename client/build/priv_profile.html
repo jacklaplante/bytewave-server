@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Private Profile</title>
+
+    <!--CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/pub_profile.css" rel="stylesheet">
+    <link href="css/colors.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <!-- bytewave Private Profile goes here. -->
+    <!--firstly, navigation bar-->
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="edit_con.html">Create Contract</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+              <input type="text" class="form-control" placeholder="Search..."
+              onkeydown = "if (event.keyCode == 13){
+                event.preventDefault();
+                document.getElementById('search').click();
+              }">
+              <a href="search.html" class="hide" id="search"></a>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Welcome Jane! <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Profile</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </div>
+    <!--Page Content-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="panel panel-primary panelfill">
+            <div class="panel-heading">
+              <!-- Profile Heading -->
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="media">
+                    <div class="media-left media-top">
+                      <img src="img/private_profile.png" height="10%" />
+                      <a class= "headertext" href="#">Edit picture?</a>
+                    </div>
+                    <div class="media-body headertext">
+                      <h1>Jane Doe</h1>
+                      <h4> Freelance Developer</h4>
+                      <h4>
+                        Rating: <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>☆</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Profile Content -->
+            <div class= "panel-body">
+              <div class="row">
+                <div class="col-md-10">
+                      <h3>About this developer</h3>
+                      <hr>
+                    <h4>Skills <a href="#"><span class="glyphicon glyphicon-edit maintext"></span></a> </h4>
+                  <ul>
+                    <li>Html</li>
+                    <li>Java</li>
+                    <li>Javascript</li>
+                    <li>Knitting</li>
+                    <br>
+                  </ul>
+                    <h4> Experience <a href="#"><span class="glyphicon glyphicon-edit maintext"></span></a> </h4>
+                  <ul>
+                    <li>4 Years of Computer Science at UMass Amherst</li>
+                    <li>2 Years at bytewave developing web applications</li>
+                    <br>
+                  </ul>
+                  <div class="media-body">
+                    <h4>About me <a href="#"><span class="glyphicon glyphicon-edit maintext"></span></a></h4>
+                    Hello! My name is Jane and I am an enthusiastic web developer.
+                    I'm pretty fresh out of college, but I have a lot of experience doing x, y, and z.
+                    I'm currently looking to do some freelance work to make ends meet.
+                    If you have a job you want done fast and well, send me an e-mail!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project info, right alligned -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="panel panel-default panelfill">
+                <div class="panel-heading">
+                  <!-- Profile Heading -->
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="media">
+                        <div class="media-body headertext">
+                          <h3>Projects</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Profile Content -->
+                <div class= "panel-body">
+                  <ul class="media-list">
+                      <div class="media-body">
+                        <h4>Active</h4>
+                      <div class= "contract">
+                        <a href="#">Angry Contractor</a><br>
+                        Started: December 30th, 2015
+                        <br><a href="#">Passive-Agressive Bird UI</a>
+                      </div>
+                        <hr>
+                        <h4>History</h4>
+                      <div class = "contract">
+                        <a href="#">Lord of the Contractors</a><br>
+                        Started: November 18th, 2015
+                        <br>Finished: December 2, 2015
+                        <br><a href="#">Mordor-Crawler App</a>
+                      </div>
+                        <hr>
+                        <h4>Bookmarked</h4>
+                        <a href="#">Java Maker</a>
+                        <br><a href="#">Bird Database</a>
+                      </div>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel panel-default panelfill">
+                <div class="panel-heading">
+                  <div class="panel-title headertext"><h3>Contact Info <a href="#"><span class="glyphicon headertext glyphicon-edit"></span></a></h3></div>
+                </div>
+                <div class="panel-body">
+                  <address>
+                    <strong>Jane Doe</strong><br>
+                    99 Java Lane<br>
+                    Amherst, MA 01002<br>
+                    (413) 123-4567
+                  </address>
+                  <hr>
+                  <address>
+                    <strong>Email</strong><br>
+                    <a href="mailto:#">janedoe@programming.com</a>
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

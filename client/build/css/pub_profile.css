@@ -1,0 +1,60 @@
+.panel-body .about {
+    padding: 5px;
+    margin: auto;
+}
+
+.media-top{
+  padding-top: 20px;
+}
+
+h5.about {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+h6.about {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 15px;
+}
+.panel-heading .about {
+  margin: auto;
+}
+.panel-default button {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.panel-default h4 {
+  margin-top: 0px;
+  padding-bottom: 4px;
+}
+.phone {
+  padding-top: 10px;
+}
+
+/* CSS code for stylized comment box grabbed from
+https://css-tricks.com/creating-a-nice-textarea/ */
+textarea#styled {
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+/* CSS code for star ratings grabbed from
+https://css-tricks.com/star-ratings/ */
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}

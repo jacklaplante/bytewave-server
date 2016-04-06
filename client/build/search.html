@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Search Page</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS goes here -->
+    <link href="css/search.css" rel="stylesheet">
+    <link href="css/colors.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="edit_con.html">Create Contract</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Welcome Jane! <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Profile</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </div>
+    <!-- page content -->
+    <div class="container">
+      <div class="row">
+        <!-- Advanced search features -->
+        <div class="col-md-2 advanced-search">
+          <div class="panel panel-default panelfill">
+            <div class="panel-heading">
+              <h4 class="text-center headertext"><strong>Advanced Search</strong></h4>
+            </div>
+
+            <div class="panel-body">
+              <div class="dropdown text-center">
+                Sort by:
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Most Recent
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu sort-by" aria-labelledby="menu">
+                  <li><a href="#">Popular</a></li>
+                  <li><a href="#"><font size="1">$</font><font size="2">$</font>$</a></li>
+                  <li><a href="#">$<font size="2">$</font><font size="1">$</font></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="text-center search-rating">
+                <p>Minimum Rating</p>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span></button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span></button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span></button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span></button>
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span></button>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="text-center">
+                <p>Budget</p>
+                <div class="input-group">
+                  <p class="input-group-addon">Min: </p>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="input-group">
+                  <p class="input-group-addon">Max: </p>
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="text-center">Tags</p>
+              <button class="btn btn-default tag-button" type="button">#java</button>
+              <button class="btn btn-default tag-button" type="button">#css</button>
+              <button class="btn btn-default tag-button" type="button">#javascript</button>
+              <button class="btn btn-default tag-button" type="button">#ionic</button>
+              <button class="btn btn-default tag-button" type="button">#angularjs</button>
+              <button class="btn btn-default tag-button" type="button">#python</button>
+              <button class="btn btn-default tag-button" type="button">#mysql</button>
+              <button class="btn btn-default tag-button" type="button">#c</button>
+              <button class="btn btn-default tag-button" type="button">#c++</button>
+              <button class="btn btn-default tag-button" type="button">#scala</button>
+              <button class="btn btn-default tag-button" type="button">#ruby</button>
+            </div>
+            <div class="panel-footer text-center">
+              <button class="btn btn-default" type="button">Search</button>
+            </div>
+          </div>
+        </div>
+        <!-- Main content column -->
+        <div class="col-md-6">
+          <!-- Search bar -->
+          <div class="row">
+            <div class="col-md-12">
+              <form class="input-group">
+                <input type="text" class="form-control" placeholder="Search Projects">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </span>
+              </form>
+            </div>
+          </div>
+          <hr>
+          <!-- Search results -->
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Sample contract 1 -->
+              <div class="panel panel-default active-preview panelfill">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><a href="#">Static UI Mockup</a>
+                    <div class="pull-right">
+                      <a href="#" class="headertext">UCombinator</a>
+                    </div>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Description:</strong> Using HTML, CSS, and Bootstrap, create a non-interactive mockup of your product with all screens you could possibly access from the URL. You will not...
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <p><br><strong>Budget:</strong> <span class="text-muted">$0.00</span></p>
+                      <p><strong>Deadline:</strong> <span class="text-muted">February 9, 2016</span></p>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="button" class="btn btn-default" style="margin-top: 25px;">Preview</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  tags: <a href="#">#html</a> <a href="#">#css</a> <a href="#">#javascript</a> <a href="#">#bootstrap</a> <a href="#">#web</a>
+                </div>
+              </div>
+              <!-- Sample contract 2 -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title headertext"><a href="#">Point of Sale Application</a>
+                    <div class="pull-right">
+                      <a href="#" class="headertext">John's Thrift Shop</a>
+                    </div>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Description:</strong> Our shop is looking for a point of sale application that is easy to use, is lightweight and can run on old hardware. It should also allow for inventory tracking...
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <p><br><strong>Budget:</strong> <span class="text-muted">$750.00</span></p>
+                      <p><strong>Deadline:</strong> <span class="text-muted">October 2016</span></p>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="button" class="btn btn-default" style="margin-top: 25px;">Preview</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  tags: <a href="#">#java</a> <a href="#">#mysql</a>
+                </div>
+              </div>
+              <!-- Sample contract 3 -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title headertext"><a href="#">Create Our Website</a>
+                    <div class="pull-right">
+                    <a href="#" class="headertext">Barry & Lawrence Law Firm</a>
+                    </div>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>
+                        <strong>Description:</strong> We need a fully functional, professional web page to market our services, rates and personel. The website must be viewable on a wide range of...
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <p><br><strong>Budget:</strong> <span class="text-muted">$1000.00</span></p>
+                      <p><strong>Deadline:</strong> <span class="text-muted">December 31, 2016</span></p>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="button" class="btn btn-default" style="margin-top: 25px;">Preview</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  tags: <a href="#">#html</a> <a href="#">#css</a> <a href="#">#ionic</a> <a href="#">#nodejs</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Result preview -->
+        <div class="col-md-4">
+          <div class="panel panel-default panelfill">
+            <div class="panel-heading">
+              <h2 class="text-center headertext">Static UI Mockup</h2>
+            </div>
+            <div class="panel-body">
+              <p>
+                <strong>Description:</strong> Using HTML, CSS, and Bootstrap, create a non-interactive mockup of your product with all screens you could possibly access from the URL. You will not have to create any Log In/Out pages at this point in the project, but a user should be logged into your service for these screen captures.
+              </p>
+              <div>
+                <strong>Required Skills:</strong>
+                <ul>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default panelfill">
+            <div class="panel-heading">
+              <h2 class="text-center headertext">UCombinator</h2>
+            </div>
+            <div class="panel-body">
+              <p>
+                <strong>About Us:</strong> UCombinator is a fairly new product developed by two genuine programmers that helps the in-class experience when it comes to group projects. Not only does this company form groups that contain all skills needed to be successful in group work, they also have come out with a grading system that takes commits pushed to github as a groups submission.
+              </p>
+              <strong>Rating: </strong>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star-empty"></span>
+              <span class="glyphicon glyphicon-star-empty"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- App code -->
+    <script src="js/bundle.js"></script>
+  </body>
+</html>

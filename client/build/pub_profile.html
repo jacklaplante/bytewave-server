@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Public Profile</title>
+
+    <!-- Bootstrap's CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/pub_profile.css" rel="stylesheet">
+    <link href="css/colors.css" rel="stylesheet">
+  </head>
+  <body>
+    <!--firstly, navigation bar-->
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="edit_con.html">Create Contract</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+              <input type="text" class="form-control" placeholder="Search..."
+              onkeydown = "if (event.keyCode == 13){
+                event.preventDefault();
+                document.getElementById('search').click();
+              }">
+              <a href="search.html" class="hide" id="search"></a>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Welcome SuperBig Corp.! <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Profile</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </div>
+    <!--Page Content-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="panel panel-primary panelfill">
+            <div class="panel-heading">
+              <!-- Profile Name -->
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="media">
+                    <div class="media-left media-top">
+                      <img src="img/private_profile.png" height="10%" />
+                    </div>
+                    <div class="media-body headertext">
+                      <h1>John Doe</h1>
+                      <h4> Student at University of Massachusetts, Amherst</h4>
+                      <h4>
+                        Rating: <span>&#9733;</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Profile Content -->
+            <div class= "panel-body">
+              <div class="row">
+                <div class="col-md-10">
+                  <h3>About this developer</h3>
+                  <hr>
+                  <h4>Skills</h4>
+                  <ul>
+                    <li>Birdcalling</li>
+                    <li>Scallop Cannon Construction</li>
+                    <li>Virtual Sewer Maintenance</li>
+                    <li>Brainstorming Absurd Skills</li>
+                  </ul>
+                  <h4>Experience</h4>
+                  <ul>
+                    <li>4 years living it up with the crew lmao</li>
+                    <li>18 years bumming it in my mom's basement</li>
+                    <li>6 months maintaining a MongoDB database for <a href="#">SuperBig Corp.</a></li>
+                    <li>6 months lying to my parents about being fired from <a href="#">SuperBig Corp.</a></li>
+                    <li>6 hours defacing the property of <a href="#">SuperBig Corp.</a></li>
+                    <li>1 year of community service with <a href="#">Minnesota Correctional Facility</a></li>
+                  </ul>
+                  <h4>About me</h4>
+                  Yo, yo, yo, please give me work.
+                  <ul>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Contractor reviews, right alligned -->
+        <div class="col-md-5">
+          <div class="panel panel-default panelfill">
+            <div class="panel-heading">
+              <div class="panel-title headertext"><h3>Reviews</h3></div>
+            </div>
+            <div class="panel-body">
+              <a href="http://bfy.tw/490u">Angry Contractor</a><br>
+              <a href="#">December 18th, 1998 12:22 PM</a>
+              <p>Hired this man for a quick, $100 website fix. He deleted the entire html code for our website and replaced it with a picture of a squirrel which, when clicked, led to the lmgtfy page for "big man on campus". Would not recommend.</p>
+              <hr>
+              <a href="http://bfy.tw/490u">"Contractor"</a><br>
+              <a href="#">March 13th, 1997 4:21 AM</a>
+              <p>Pretty dank, yo.</p>
+              <hr>
+            <h4>Add a review</h4>
+            <h5>
+                Rating: <span class="rating"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></span>
+            </h5>
+            <textarea name="styled-textarea" id="styled" onfocus="this.value=''; setbg('#e5fff3');" onblur="setbg('white')">Add a review...</textarea>
+            <button type="button">Submit</button>
+            </div>
+          </div>
+          <div class="panel panel-default panelfill">
+            <div class="panel-heading">
+              <div class="panel-title headertext"><h3>Contact this developer</h3></div>
+            </div>
+            <div class="panel-body">
+              <address>
+                <strong>John Doe</strong><br>
+                68 Your Mom's House<br>
+                Amherst, MA 01003<br>
+                <div class="phone"><a href="#">(555) 555-5555</a></div>
+              </address>
+              <hr>
+              <address>
+                <strong>Email</strong><br>
+                <a href="mailto:#">first.last@unemployed.edu</a>
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
