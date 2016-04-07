@@ -69,18 +69,29 @@ function emulateServerReturn(data, cb) {
 
 export function saveContract(contents, callback){
 
-  var contractData = {
-    "title": contents.state.title,
-    "budget": contents.state.budget,
-    "deadline": contents.state.deadline,
-    "description": contents.state.description,
-    "skills": contents.state.skills,
-    "tags": contents.state.tags
-  }
+  sendXHR('POST', '/contract', {
+    title: contents.state.title,
+    budget: contents.state.budget,
+    deadline: contents.state.deadline,
+    description: contents.state.description,
+    skills: contents.state.skills,
+    tags: contents.state.tags,
+  }, (xhr) => {
+    callback(JSON.parse(xhr.responseText));
+  });
 
-  var newContract = addDocument('contracts', contractData);
-
-  emulateServerReturn(newContract, callback);
+  // var contractData = {
+  //   "title": contents.state.title,
+  //   "budget": contents.state.budget,
+  //   "deadline": contents.state.deadline,
+  //   "description": contents.state.description,
+  //   "skills": contents.state.skills,
+  //   "tags": contents.state.tags
+  // }
+  //
+  // var newContract = addDocument('contracts', contractData);
+  //
+  // emulateServerReturn(newContract, callback);
 }
 
 // token for id=1
@@ -120,7 +131,7 @@ function sendXHR(verb, resource, body, cb){
       xhr.send(body);
       break;
     case 'object':
-      xhr.setRequestHeeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       xhr.send(JSON.stringify(body));
       break;
     default:

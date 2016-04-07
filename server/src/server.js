@@ -1,11 +1,15 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var database = require('./database');
 var readDocument = database.readDocument;
 var readDocumentNoId = database.readDocumentNoId;
 var writeDocument = database.writeDocument;
-var addDocument = database.writeDocument;
+var addDocument = database.addDocument;
 var deleteDocument = database.deleteDocument;
+
+app.use(bodyParser.text());
+app.use(bodyParser.json());
 
 function getUserIdFromToken(authorizationLine) {
   try {
@@ -35,6 +39,21 @@ function getAllContracts(){
     contract.author = readDocument('users', contract.author);
   });
   return contractData;
+}
+
+function saveContract(body){
+  var newContract = {
+    "title": body.title,
+    "budget": body.budget,
+    "deadline": body.deadline,
+    "description": body.description,
+    "skills": body.skills,
+    "tags": body.tags
+  }
+
+  newContract = addDocument('contracts', newContract);
+
+  return newContract;
 }
 
 app.get('/contracts', function(req, res) {
@@ -97,6 +116,13 @@ app.get('/user/:userid', function(req, res) {
   }else{
     res.status(401).end();
   }
+});
+
+app.post('/contract', function(req, res) {
+  var body = req.body;
+  var newContract = saveContract(body);
+  res.status(201);
+  res.send(newContract);
 });
 
 app.use(express.static('../client/build'));
