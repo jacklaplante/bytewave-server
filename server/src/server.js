@@ -7,7 +7,7 @@ var writeDocument = database.writeDocument;
 var addDocument = database.writeDocument;
 var deleteDocument = database.deleteDocument;
 
-function getAllContracts(container){
+function getAllContracts(){
   var contractData = readDocumentNoId('contractContainer');
   contractData.forEach((contract) => {
     contract.author = readDocument('users', contract.author);
@@ -16,7 +16,7 @@ function getAllContracts(container){
 }
 
 app.get('/contracts', function(req, res) {
-  res.send(getAllContracts(1));
+  res.send(getAllContracts());
 });
 
 function contractContains(contract, searchTerm){
@@ -24,10 +24,9 @@ function contractContains(contract, searchTerm){
 }
 
 app.get('/contracts/:searchTerm', function(req, res) {
-  var contractData = getAllContracts(1);
+  var contractData = getAllContracts();
   for(var i = 0, len = contractData.length; i < len; i++){
-    contractData[i].author = readDocument('users', contractData[i].author);
-    if(!contractContains(contractData[i], searchTerm)){
+    if(!contractContains(contractData[i], req.params.searchTerm)){
       contractData.splice(i, 1);
       len--;
       i--;
