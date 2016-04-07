@@ -25,10 +25,10 @@ export function getTags(cb){
 }
 
 export function getUser(id, cb){
-  sendXHR('GET', '/user/' + id, undefined, (xhr) => {
-    cb(JSON.parse(xhr.responseText));
-  });
-}
+  sendXHR('GET', '/user/1/privateprofile', undefined, (xhr) => {
+     cb(JSON.parse(xhr.responseText));
+   });
+ }
 
 export function updateUser(id, newUser, cb){
   var user = readDocument('users', id);

@@ -13,22 +13,16 @@ app.use(bodyParser.json());
 
 function getUserIdFromToken(authorizationLine) {
   try {
-    // Cut off "Bearer " from the header value.
     var token = authorizationLine.slice(7);
-    // Convert the base64 string to a UTF-8 string.
     var regularString = new Buffer(token, 'base64').toString('utf8');
-    // Convert the UTF-8 string into a JavaScript object.
     var tokenObj = JSON.parse(regularString);
     var id = tokenObj['id'];
-    // Check that id is a number
     if (typeof id === 'number') {
       return id;
     } else {
-      // Not a number. Return -1, an invalid ID.
       return -1;
     }
   } catch (e) {
-    // Return an invalid ID
     return -1;
   }
 }
@@ -76,12 +70,6 @@ app.get('/contracts/:searchTerm', function(req, res) {
   res.send(contractData);
 });
 
-function getContractItemSync(contractItemId) {
-  var contractItem = readDocument('contractContainer', contractItemId);
-  contractItem.author = readDocument('users', contractItem.author);
-  return contractItem;
-}
-
 app.get('/contract/user/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
@@ -101,18 +89,22 @@ app.get('/tags', function(req, res){
 });
 
 function getContractSync(contractId){
-  var allContracts = readDocumentNoId('contractContainer');
-  var contract = allContracts[contractId - 1];
+  var allContracts = readDocumentNoId('contracts');
+  var contract = allContracts[contractId];
   return contract;
 }
+function getUser(id){
+  var users = readDocument('users', id);
+  users.contracts = users.contracts.map(getContractSync);
+  return users;
+ }
 
-app.get('/user/:userid', function(req, res) {
+app.get('/user/:userid/privateprofile', function(req, res) {
   var userid = parseInt(req.params.userid);
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   if (fromUser === userid){
-    var user = readDocument('users', userid);
-    user.contracts = user.contracts.map(getContractSync);
-    res.send(user);
+    var userid = req.params.userid;
+    res.send(getUser(userid));
   }else{
     res.status(401).end();
   }
