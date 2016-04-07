@@ -7,6 +7,7 @@ var initialData = {
       // This user has id "1".
       "1": {
         "_id": 1,
+        "image": "img/private_profile.png",
         "company": "UCombinator",
         "fullName": "Chandler",
         "title": "Contractor",
@@ -23,6 +24,7 @@ var initialData = {
 
       "2": {
         "_id": 2,
+        "image": "img/private_profile.png",
         "company": "Student",
         "fullName": "Jack",
         "title": "Developer",
@@ -50,6 +52,7 @@ var initialData = {
 
       "3": {
         "_id": 3,
+        "image": "img/private_profile.png",
         "company": "Student",
         "fullName": "Michelle Wilkinson",
         "title": "Developer",
@@ -89,11 +92,6 @@ var initialData = {
 			"skills": ["HTML", "CSS", "JavaScript"],
 			"tags": ["#html", "#css", "#javascript", "#bootstrap", "#web"]
 		}
-  }
-  "tags": {
-    "1": [
-      "java", "css", "javascript", "ionic", "angularjs", "python", "mysql", "c", "c++", "scala", "ruby"
-    ]
   }
 };
 
