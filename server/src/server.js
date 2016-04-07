@@ -54,6 +54,48 @@ function saveContract(body){
   return newContract;
 }
 
+function postReview(userId, body) {
+  var user = readDocument('users', userId);
+  user.reviews.push({
+    "author": body.author,
+    "stuff": contents.contents,
+    "date": new Date().getTime()
+  });
+  var updatedUser = writeDocument('users', user);
+  return updatedUser;
+}
+
+
+app.get('/user/:userId', function(req, res) {
+  var useridNumber = parseInt(userid, 10);
+  res.send(getUser(userId));
+});
+
+
+app.get('/user/:userid/privateprofile', function(req, res) {
+  var userid = parseInt(req.params.userid);
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if (fromUser === userid){
+    var userid = req.params.userid;
+    res.send(getUser(userid));
+  }else{
+    res.status(401).end();
+  }
+});
+
+
+app.put('/user/:userId/publicprofile', function(req, res) {
+  var userId = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var profileId = parseInt(userid, 10);
+  var user = readDocument('users', userid);
+  if (fromUser === user) {
+    res.send(postReview(profileId, req.body));
+  } else {
+    res.status(401).end();
+  }
+});
+
 app.get('/contracts', function(req, res) {
   res.send(getAllContracts());
 });

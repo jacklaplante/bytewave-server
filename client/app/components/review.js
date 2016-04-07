@@ -11,7 +11,7 @@ function unixTimeToString(time) {
      return (
        <div>
        <div className= "review">
-         <Link to={"/publicProfile/" + this.props.author}>{readDocument('users', this.props.author).fullName}</Link><br />
+         <Link to={"/publicProfile/" + this.props.author}>{getUserObject(this.props.author).fullName}</Link><br />
          {unixTimeToString(this.props.date)}
          <br />{this.props.children}
        </div>

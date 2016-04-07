@@ -32,7 +32,7 @@ export default class PublicProfile extends React.Component {
   }
 
   refresh() {
-    getUser(2, (userData) => {
+    getPublic(2, (userData) => {
       this.setState(userData);
     });
   }

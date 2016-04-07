@@ -18,6 +18,30 @@ export function getSearchContracts(searchTerm, cb) {
   });
 }
 
+export function postReview(userId, author, contents, cb) {
+  sendXHR('PUT', '/user/:userid/publicprofile', {
+    author: contents.state.author,
+    stuff: contents.state.stuff,
+    date: contents.state.date
+  }, (xhr) => {
+    callback(JSON.parse(xhr.responseText));
+  });
+}
+
+
+ export function getPublic(id, cb){
+   sendXHR('GET', '/user/' + id + '/publicprofile', undefined, (xhr) => {
+      cb(JSON.parse(xhr.responseText));
+    });
+  }
+
+
+export function getUserObject(id, cb){
+  sendXHR('GET', '/user/' + id, undefined, (xhr) => {
+     cb(JSON.parse(xhr.responseText));
+   });
+ }
+
 export function getTags(cb){
   sendXHR('GET', '/tags', undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
