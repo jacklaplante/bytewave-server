@@ -41,7 +41,7 @@ export default class Search extends React.Component {
   }
 
   search(searchTerm) {
-    getSearchContracts(searchTerm, this.props.container, results => {
+    getSearchContracts(searchTerm, results => {
       this.setState({
         contracts: results,
         showPreview: false,

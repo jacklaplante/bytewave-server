@@ -19,21 +19,10 @@ export function getContractData(user, cb) {
   emulateServerReturn(contractData, cb);
 }
 
-function contractContains(contract, searchTerm){
-  return contract.title.search(searchTerm) > -1 || contract.description.search(searchTerm) > -1 || contract.author.company.search(searchTerm) > -1;
-}
-
-export function getSearchContracts(searchTerm, container, cb) {
-  var contractData = readDocument('contractContainer', container);
-  for(var i = 0, len = contractData.length; i < len; i++){
-    contractData[i].author = readDocument('users', contractData[i].author);
-    if(!contractContains(contractData[i], searchTerm)){
-      contractData.splice(i, 1);
-      len--;
-      i--;
-    }
-  }
-  emulateServerReturn(contractData, cb);
+export function getSearchContracts(searchTerm, cb) {
+  sendXHR('GET', '/contracts/' + searchTerm, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getTags(cb){
