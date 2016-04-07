@@ -22,13 +22,17 @@ function getUserIdFromToken(authorizationLine) {
     } else {
       return -1;
     }
-  } catch (e) {
+  } catch (e) {bje
     return -1;
   }
 }
 
 function getAllContracts(){
-  var contractData = readDocumentNoId('contractContainer');
+  var allContracts = readDocumentNoId('contracts');
+  var contractData = [];
+  for(var key in allContracts){
+    contractData.push(allContracts[key]);
+  }
   contractData.forEach((contract) => {
     contract.author = readDocument('users', contract.author);
   });
