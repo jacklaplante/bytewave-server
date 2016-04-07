@@ -24,16 +24,10 @@ export function getTags(cb){
   });
 }
 
-export function getContractSync(contractId){
-  var allContracts = readDocument('contractContainer', 1);
-  var contract = allContracts[contractId - 1];
-  return contract;
-}
-
 export function getUser(id, cb){
-  var users = readDocument('users', id);
-  users.contracts = users.contracts.map(getContractSync);
-  emulateServerReturn(users, cb);
+  sendXHR('GET', '/user/' + id, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function updateUser(id, newUser, cb){
