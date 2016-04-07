@@ -110,6 +110,25 @@ app.get('/user/:userid/privateprofile', function(req, res) {
   }
 });
 
+// edit profile.
+app.put('/user/:userid/privateprofile/edit', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var useridNumber = parseInt(userid, 10);
+  var user = readDocument('users', userid);
+  if (fromUser === useridNumber) {
+    user.skills = newUser.skills;
+    user.experience = newUser.experience;
+    user.about = newUser.about;
+    user.contact = newUser.contact;
+    user.email= newUser.email;
+    var updatedUser = writeDocument('users', user);
+    res.send(updatedUser);
+  } else {
+    res.status(401).end();
+  }
+});
+
 app.post('/contract', function(req, res) {
   var body = req.body;
   var newContract = saveContract(body);
