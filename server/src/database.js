@@ -93,11 +93,6 @@ var initialData = {
 			"tags": ["#html", "#css", "#javascript", "#bootstrap", "#web"]
 		}
   }
-  "tags": {
-    "1": [
-      "java", "css", "javascript", "ionic", "angularjs", "python", "mysql", "c", "c++", "scala", "ruby"
-    ]
-  }
 };
 
 var data;
