@@ -6,17 +6,10 @@ export function getAllContracts(container, cb) {
   });
 }
 
-function getContractItemSync(contractItemId) {
-  var contractItem = readDocument('contractContainer', contractItemId);
-  contractItem.author = readDocument('users', contractItem.author);
-  return contractItem;
-}
-
 export function getContractData(user, cb) {
-  var userData = readDocument('users', user);
-  var contractData = userData.contracts;
-  contractData.contents = contractData.map(getContractItemSync);
-  emulateServerReturn(contractData, cb);
+  sendXHR('GET', '/contract/user/' + user, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  })
 }
 
 export function getSearchContracts(searchTerm, cb) {

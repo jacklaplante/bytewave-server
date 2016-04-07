@@ -35,6 +35,18 @@ app.get('/contracts/:searchTerm', function(req, res) {
   res.send(contractData);
 });
 
+function getContractItemSync(contractItemId) {
+  var contractItem = readDocument('contractContainer', contractItemId);
+  contractItem.author = readDocument('users', contractItem.author);
+  return contractItem;
+}
+
+app.get('/contract/user/:userid', function(req, res) {
+  var userData = readDocument('users', user);
+  var contractData = userData.contracts;
+  contractData.contents = contractData.map(getContractItemSync);
+});
+
 app.use(express.static('../client/build'));
 app.listen(3000, function() {
   console.log("Freelancer app listening on port 3000!");
