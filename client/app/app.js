@@ -8,6 +8,7 @@ import Search from "./components/search";
 import {resetDatabase} from './database';
 import {saveContract} from './server';
 import { IndexRoute, Router, Route, hashHistory, Link } from 'react-router';
+import ErrorBanner from './components/errorbanner';
 
 
 class SearchPage extends React.Component {
@@ -99,6 +100,9 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+      <div>
+        <ErrorBanner />
+      </div>
       <div>
         {this.props.children}
       </div>

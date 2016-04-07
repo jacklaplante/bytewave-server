@@ -102,20 +102,18 @@ function sendXHR(verb, resource, body, cb){
       cb(xhr);
     } else{
       var responseText = xhr.responseText;
-      //TODO: add error component
-      //equivalent from workshop is as follows:
-      // FacebookError('Could not ' + verb + ' ' + resource + ': Received ' + statusCode + ' ' + statusText + ': ' + responseText);
+      FreelancerError('Could not ' + verb + ' ' + resource + ': Received ' + statusCode + ' ' + statusText + ': ' + responseText);
     }
   });
 
   xhr.timeout = 10000;
 
   xhr.addEventListener('error', function() {
-    // FacebookError('Could not ' + verb + ' ' + resource + ': Could not connect to the server.');
+    FreelancerError('Could not ' + verb + ' ' + resource + ': Could not connect to the server.');
   });
 
   xhr.addEventListener('timeout', function() {
-    // FacebookError('Could not ' + verb + ' ' + resource + ': Request timed out.');
+    FreelancerError('Could not ' + verb + ' ' + resource + ': Request timed out.');
   });
 
   switch (typeof(body)) {
