@@ -29,7 +29,7 @@ class ContractFormPage extends React.Component {
 
   onSave(contractContents){
     saveContract(contractContents, () => {
-      alert("it worked?")
+      alert("it worked")
     });
   }
 
