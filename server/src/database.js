@@ -74,7 +74,7 @@ var initialData = {
 			"title": "Dynamic Mockup",
 			"startend": "Started",
 			"budget": "$0.00",
-			"deadline": 14513451345,
+			"deadline": "05/12/2016",
 			"description": "This is the description I am using to show contract item description",
       "postdate": "02/03/0344",
 			"skills": ["HTML", "CSS", "JavaScript"],

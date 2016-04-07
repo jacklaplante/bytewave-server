@@ -110,6 +110,16 @@ app.get('/user/:userid/privateprofile', function(req, res) {
   }
 });
 
+function updateUser(id, newUser){
+  var user = readDocument('users', id);
+  user.skills = newUser.skills;
+  user.experience = newUser.experience;
+  user.about = newUser.about;
+  user.contact = newUser.contact;
+  user.email= newUser.email;
+  var updatedUser = writeDocument('users', user);
+  return updatedUser;
+}
 // edit profile.
 app.put('/user/:userid/privateprofile/edit', function(req, res) {
   var userid = req.params.userid;
@@ -117,13 +127,7 @@ app.put('/user/:userid/privateprofile/edit', function(req, res) {
   var useridNumber = parseInt(userid, 10);
   var user = readDocument('users', userid);
   if (fromUser === useridNumber) {
-    user.skills = newUser.skills;
-    user.experience = newUser.experience;
-    user.about = newUser.about;
-    user.contact = newUser.contact;
-    user.email= newUser.email;
-    var updatedUser = writeDocument('users', user);
-    res.send(updatedUser);
+    res.send(updateUser(userid, req.body));
   } else {
     res.status(401).end();
   }
