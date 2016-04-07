@@ -13,7 +13,7 @@ import { IndexRoute, Router, Route, hashHistory, Link } from 'react-router';
 class SearchPage extends React.Component {
   render() {
     return (
-      <Search container={1} />
+      <Search/>
     );
   }
 }

@@ -17,7 +17,7 @@ export default class Search extends React.Component {
   }
 
   refresh() {
-    getAllContracts(this.props.container, results => {
+    getAllContracts(1, results => {
       this.setState({
         contracts: results,
         showPreview: this.state.showPreview,

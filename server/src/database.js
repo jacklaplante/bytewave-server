@@ -95,7 +95,7 @@ var initialData = {
 };
 
 var data;
-var udpated = false;
+var updated = false;
 var fs = require('fs'), path = require('path');
 
 try {
@@ -149,7 +149,7 @@ module.exports.writeDocument = writeDocument;
 /**
  * Adds a new document to the NoSQL database.
  */
-export function addDocument(collectionName, newDoc) {
+function addDocument(collectionName, newDoc) {
   var collection = data[collectionName];
   var nextId = Object.keys(collection).length;
   if (newDoc.hasOwnProperty('_id')){
@@ -188,7 +188,7 @@ module.exports.getCollection = getCollection;
 /**
  * Reset our browser-local database.
  */
-export function resetDatabase() {
+function resetDatabase() {
   data = JSONClone(initialData);
   updated = true;
 }
@@ -197,6 +197,6 @@ module.exports.resetDatabase = resetDatabase;
 // Periodically updates the database on the hard drive when changed.
 setInterval(function() {
   if (updated) {
-    fs.writeFileSync(path.join(__dirname, 'database.json'), JSON.stringify(data) {encoding: 'utf8'});
+    fs.writeFileSync(path.join(__dirname, 'database.json'), JSON.stringify(data), {encoding: 'utf8'});
   }
 }, 200)

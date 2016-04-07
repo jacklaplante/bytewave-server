@@ -1,11 +1,9 @@
 import {readDocument, writeDocument, addDocument} from './database.js';
 
 export function getAllContracts(container, cb) {
-  var contractData = readDocument('contractContainer', container);
-  contractData.forEach((contract) => {
-    contract.author = readDocument('users', contract.author);
+  sendXHR('GET', '/contracts', undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
   });
-  emulateServerReturn(contractData, cb);
 }
 
 function getContractItemSync(contractItemId) {
@@ -106,4 +104,51 @@ export function saveContract(contents, callback){
   var newContract = addDocument('contracts', contractData);
 
   emulateServerReturn(newContract, callback);
+}
+
+// token for id=1
+var token = 'eyJpZCI6MX0=';
+function sendXHR(verb, resource, body, cb){
+  var xhr = new XMLHttpRequest();
+  xhr.open(verb, resource);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+
+  xhr.addEventListener('load', function() {
+    var statusCode = xhr.status;
+    var statusText = xhr.statusText;
+    if (statusCode >= 200 && statusCode < 300){
+      cb(xhr);
+    } else{
+      var responseText = xhr.responseText;
+      //TODO: add error component
+      //equivalent from workshop is as follows:
+      // FacebookError('Could not ' + verb + ' ' + resource + ': Received ' + statusCode + ' ' + statusText + ': ' + responseText);
+    }
+  });
+
+  xhr.timeout = 10000;
+
+  xhr.addEventListener('error', function() {
+    // FacebookError('Could not ' + verb + ' ' + resource + ': Could not connect to the server.');
+  });
+
+  xhr.addEventListener('timeout', function() {
+    // FacebookError('Could not ' + verb + ' ' + resource + ': Request timed out.');
+  });
+
+  switch (typeof(body)) {
+    case 'undefined':
+      xhr.send();
+      break;
+    case 'string':
+      xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+      xhr.send(body);
+      break;
+    case 'object':
+      xhr.setRequestHeeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.send(JSON.stringify(body));
+      break;
+    default:
+      throw new Error('Unknown body type: ' + typeof(body));
+  }
 }
