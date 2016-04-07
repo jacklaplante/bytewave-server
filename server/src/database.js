@@ -64,32 +64,32 @@ var initialData = {
         "reviews": []
       }
   },
-  "contractContainer": [
-    {
-      "_id": 1,
-      "author": 1,
-      "title": "Dynamic Mockup",
-      "startend": "Started",
-      "budget": "$0.00",
-      "deadline": "05/12/2016",
-      "description": "This is the description I am using to show contract item description",
+  "contracts": {
+		"1": {
+			"_id": 1,
+			"author": 1,
+			"title": "Dynamic Mockup",
+			"startend": "Started",
+			"budget": "$0.00",
+			"deadline": "05/12/2016",
+			"description": "This is the description I am using to show contract item description",
       "postdate": "02/03/0344",
-      "skills": ["HTML", "CSS", "JavaScript"],
-      "tags": ["#html", "#css"]
-    },
-    {
-      "_id": 2,
-      "author": 1,
-      "title": "Static UI Mockup",
+			"skills": ["HTML", "CSS", "JavaScript"],
+			"tags": ["#html", "#css"]
+		},
+		"2": {
+			"_id": 2,
+			"author": 1,
+			"title": "Static UI Mockup",
       "startend": "Finished",
-      "budget": "$0.00",
-      "deadline": "02/09/2016",
+			"budget": "$0.00",
+			"deadline": "02/09/2016",
       "postdate": "03/58/2015",
-      "description": "Using HTML, CSS, and Bootstrap, create a non-interactive mockup of your product with all screens you could possibly access from the URL. You will not have to create any Log In/Out pages at this point in the project, but a user should be logged into your service for these screen captures.",
-      "skills": ["HTML", "CSS", "JavaScript"],
-      "tags": ["#html", "#css", "#javascript", "#bootstrap", "#web"]
-    }
-  ],
+			"description": "Using HTML, CSS, and Bootstrap, create a non-interactive mockup of your product with all screens you could possibly access from the URL. You will not have to create any Log In/Out pages at this point in the project, but a user should be logged into your service for these screen captures.",
+			"skills": ["HTML", "CSS", "JavaScript"],
+			"tags": ["#html", "#css", "#javascript", "#bootstrap", "#web"]
+		}
+  }
   "tags": {
     "1": [
       "java", "css", "javascript", "ionic", "angularjs", "python", "mysql", "c", "c++", "scala", "ruby"
