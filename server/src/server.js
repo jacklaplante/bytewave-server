@@ -53,7 +53,10 @@ app.get('/contract/user/:userid', function(req, res) {
   }else {
     res.status(401).end();
   }
+});
 
+app.get('/tags', function(req, res){
+  res.send(readDocument("tags", 1));
 });
 
 app.use(express.static('../client/build'));

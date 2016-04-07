@@ -19,8 +19,9 @@ export function getSearchContracts(searchTerm, cb) {
 }
 
 export function getTags(cb){
-  var tags = readDocument("tags", 1);
-  emulateServerReturn(tags, cb);
+  sendXHR('GET', '/tags', undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getContractSync(contractId){
