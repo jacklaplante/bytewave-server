@@ -42,9 +42,18 @@ function getContractItemSync(contractItemId) {
 }
 
 app.get('/contract/user/:userid', function(req, res) {
-  var userData = readDocument('users', user);
-  var contractData = userData.contracts;
-  contractData.contents = contractData.map(getContractItemSync);
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber){
+    var userData = readDocument('users', useridNumber);
+    var contractData = userData.contracts;
+    contractData.contents = contractData.map(getContractItemSync);
+    res.send(contractData);
+  }else {
+    res.status(401).end();
+  }
+
 });
 
 app.use(express.static('../client/build'));
